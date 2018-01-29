@@ -49,7 +49,7 @@ def value_preprocess(img_add='./data', numpy_add='./numpydata', mean_value=numpy
         n_count += 1
         child = os.path.join('%s/%s' % (img_add, dirs))
         origin_dir = dirs.split('.')
-        npy_file = origin_dir[0] + '_' + origin_dir[1]
+        npy_file = origin_dir[0]
         numpy_dir = numpy_add + '/' + npy_file + '.npy'
         img = numpy.load(numpy_dir)
         img = img.astype('float')
