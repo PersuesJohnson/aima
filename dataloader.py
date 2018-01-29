@@ -59,7 +59,13 @@ class img_Dataset(data.Dataset):
             return training_data,self.origin_data['train_label'][index].astype('int64')
         else:
             eval_data = self.loader(self.origin_data['val_data'][index]).astype('float32')
-            return eval_data,self.origin_data['val_label'][index].astype('int64'),self.origin_data['val_data'][index]
+            txt_n = []
+            otd = self.origin_data['val_data'][index].split('.')
+            #print(otd)
+            fxk = otd[1].split('/')
+            fxk = fxk[-1]
+            #print(fxk)
+            return eval_data,self.origin_data['val_label'][index].astype('int64'),int(fxk)
             
     def loader(self,filepath):
         return numpy.load(filepath)
