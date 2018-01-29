@@ -35,10 +35,7 @@ def file_loader(img_add='./data', numpy_add='./numpydata', data_file='data.txt')
         if writeTxt:
             with open(data_file, 'a') as file:
                 file.write(numpy_dir + ' ')
-                if 'cat' in origin_dir:
-                    file.write('0\n')
-                else:
-                    file.write('1\n')
+                file.write('0\n')
     mean_value = numpy.array([0.485, 0.456, 0.406])
     standard = numpy.array([0.229, 0.224, 0.225])
     numpy.save('standard.npy',standard)

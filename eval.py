@@ -50,7 +50,7 @@ def test(model, opt, test_batch,Training = False,cross=10):
     # sim_mat: the total simmilarity matrix between the visual and auditory feature datasets
     #-----------------------------------------------------------------------------------------------------#
 
-    for i, ( eval_sample, eval_label) in enumerate(evaluation_loader):
+    for i, ( eval_sample, eval_label,file_name) in enumerate(evaluation_loader):
         #print(np.shape(eval_sample),np.shape(eval_label))
         eval_sample = Variable(eval_sample)
         if opt.cuda:
@@ -59,11 +59,18 @@ def test(model, opt, test_batch,Training = False,cross=10):
         predicted_label_one_hot = predicted_label_one_hot.cpu()
         predicted_label_one_hot = predicted_label_one_hot.data.numpy()
         #print(np.shape(predicted_label_one_hot))
-        predicted_label = np.argsort(-predicted_label_one_hot)[:,0]
+        predicted_label = np.argsort(predicted_label_one_hot)[:,0]
         #print(np.shape(predicted_label))
         eval_label = eval_label.numpy()
         #print(eval_label == predicted_label)
         right += np.sum(predicted_label == eval_label)
+        final_label_pred = 'finish.txt'
+        for i in len(file_name):
+            with open(final_label_pred, 'a') as file:
+                afile_tmp = file_name[i].split('.')
+                file.write(afile_tmp[0] + ' ')
+                print('predict label is ',predicted_label[i])
+                file.write(str(predicted_label[i])+'\n')
     print("---------------------------------------------------------------")
     if Training:
         print("Training accuracy for training set is ",right/sample_num,' with ',sample_num, 'samples.')
