@@ -45,7 +45,7 @@ class cat_and_dog_resnet(nn.Module):
         self.resnet101.fc = torch.nn.Linear(2048,2)
     
     def forward(self,data):
-        print(self.resnet101(data))
+        #print(self.resnet101(data))
         return self.resnet101(data)
         
 

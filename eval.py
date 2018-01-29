@@ -69,7 +69,7 @@ def test(model, opt, test_batch,Training = False,cross=10):
             with open(final_label_pred, 'a') as file:
                 #afile_tmp = file_name[i].split('.')
                 file.write(str(file_name[i]) + ' ')
-                print('predict label is ',predicted_label[i])
+                print('predict label for file '+str(file_name[i])+'is ',predicted_label[i])
                 file.write(str(predicted_label[i])+'\n')
     print("---------------------------------------------------------------")
     if Training:
