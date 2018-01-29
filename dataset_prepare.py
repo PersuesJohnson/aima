@@ -22,7 +22,7 @@ def file_loader(img_add='./data', numpy_add='./numpydata', data_file='data.txt')
         n_count += 1
         child = os.path.join('%s/%s' % (img_add, dirs))
         origin_dir = dirs.split('.')
-        npy_file = origin_dir[0] + '_' + origin_dir[1]
+        npy_file = origin_dir[0]
         print('Processing file ' + child + ', this is file ' + str(n_count))
         img = cv2.imread(child)
         img = cv2.resize(img,(224,224))
